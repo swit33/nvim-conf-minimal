@@ -56,33 +56,37 @@ vim.lsp.enable({
 	"lua_ls",
 })
 
+local map = vim.keymap.set
+
 vim.g.mapleader = " "
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
-vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
-vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format Buffer" })
-vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", { desc = "File picker" })
-vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>", { desc = "Live grep" })
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", { desc = "Pick buffers" })
-vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "Find help" })
-vim.keymap.set("n", "<leader>e", function()
+map("n", "K", vim.lsp.buf.hover, {})
+map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+map("n", "]b", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "[b", ":bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+map("n", "<leader>F", vim.lsp.buf.format, { desc = "Format Buffer" })
+map("n", "<leader>ff", ":Pick files<CR>", { desc = "File picker" })
+map("n", "<leader>fg", ":Pick grep_live<CR>", { desc = "Live grep" })
+map("n", "<leader>fb", ":Pick buffers<CR>", { desc = "Pick buffers" })
+map("n", "<leader>fh", ":Pick help<CR>", { desc = "Find help" })
+map("n", "<leader>om", ":Mason<CR>", { desc = "Open Mason" })
+
+map("n", "<leader>e", function()
 	require("mini.files").open()
 end, { desc = "File Explorer" })
 
-vim.keymap.set("i", "<Tab>", function()
+map("i", "<Tab>", function()
 	return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
 end, { expr = true, noremap = true, silent = true })
 
-vim.keymap.set("i", "<S-Tab>", function()
+map("i", "<S-Tab>", function()
 	return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
 end, { expr = true, noremap = true, silent = true })
 
-vim.keymap.set("i", "<Enter>", function()
+map("i", "<Enter>", function()
 	return vim.fn.pumvisible() == 1 and "<C-y>" or "<Enter>"
 end, { expr = true, noremap = true, silent = true })
 
